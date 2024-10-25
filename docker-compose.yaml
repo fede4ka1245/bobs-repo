@@ -89,7 +89,7 @@ services:
   streamlitqa:
     build:
       context: .
-      dockerfile: ./streamlitQA/Dockerfile
+      dockerfile: ./streamlitqa/Dockerfile
     ports:
       - '8501:8501'
     restart: always
