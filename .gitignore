@@ -6,3 +6,4 @@ node_modules
 /telegrambot/node_modules/
 rabbitmq
 mongo-init.js
+__pycache__
