@@ -19,9 +19,6 @@ from shared import connect_rabbitmq
 # from pathlib import Path
 # source_path = Path(__file__).resolve()
 
-telegram_bot = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
-
-
 def get_s3_url(path):
     if not path:
         return None
