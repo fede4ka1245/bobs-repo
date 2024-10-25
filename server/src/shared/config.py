@@ -18,8 +18,6 @@ S3_ENDPOINT_URL = os.environ["S3_ENDPOINT_URL"]
 S3_BUCKET_PICS = os.environ["S3_BUCKET_PICS"]
 S3_USER_URL = os.environ["S3_PUBLIC_URL"]
 
-PATH_TO_PROJECT = os.environ["PATH_TO_PROJECT"]
-PATH_TO_LAYER = os.environ["PATH_TO_LAYER"]
 SITE_URL = os.environ["SITE_URL"]
 
 
