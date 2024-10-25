@@ -1,0 +1,88 @@
+version: '3'
+services:
+  minio:
+    image: minio/minio
+    hostname: minio
+    volumes:
+      - ./data:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY}
+      MINIO_ADDRESS: ':9000'
+      MINIO_CONSOLE_ADDRESS: ':9001'
+    command: minio server /data
+
+
+  rabbitmq:
+    image: rabbitmq:3.10.7-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648"
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 1
+    ports:
+      - 15672:15672
+      - 5672:5672
+
+  mongodb:
+    image: mongo:latest
+    hostname: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+        - 27017:27017
+    volumes:
+        - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        - ./mongo:/data/db
+
+  back:
+    hostname: back
+    depends_on:
+      - rabbitmq
+      - mongodb
+    build: ./server
+    ports:
+      - 8000:8000
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      -  ./server/src:/app/src
+
+  frontend:
+    hostname: frontend
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+      args:
+        BACKEND_URL: ${BACKEND_URL}
+    ports:
+      - '3000:3000'
+    restart: always
+
+  nginx:
+    depends_on:
+      - frontend
+      - back
+      - minio
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - '80:80'
+    restart: always
+

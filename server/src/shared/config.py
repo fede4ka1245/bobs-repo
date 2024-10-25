@@ -1,0 +1,27 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+DATABASE_URL = f"mongodb://{os.environ['MONGO_HOST']}:{os.environ['MONGO_PORT']}"
+DATABASE_NAME = os.environ["MONGO_INITDB_DATABASE"]
+MONGO_INITDB_ROOT_USERNAME = os.environ["MONGO_INITDB_ROOT_USERNAME"]
+MONGO_INITDB_ROOT_PASSWORD = os.environ["MONGO_INITDB_ROOT_PASSWORD"]
+MONGO_INITDB_DATABASE = os.environ["MONGO_INITDB_DATABASE"]
+
+RABBIT_MQ_HOST = os.environ['RABBIT_MQ_HOST']
+RABBIT_MQ_PASS = os.environ['RABBITMQ_DEFAULT_PASS']
+RABBIT_MQ_LOGIN = os.environ['RABBITMQ_DEFAULT_USER']
+
+S3_ACCESS_KEY = os.environ["S3_ACCESS_KEY"]
+S3_SECRET_KEY = os.environ["S3_SECRET_KEY"]
+S3_ENDPOINT_URL = os.environ["S3_ENDPOINT_URL"]
+S3_BUCKET_PICS = os.environ["S3_BUCKET_PICS"]
+S3_USER_URL = os.environ["S3_PUBLIC_URL"]
+
+TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+TELEGRAM_USE_WEBAPP = os.environ["TELEGRAM_USE_WEBAPP"] == "1"
+PATH_TO_PROJECT = os.environ["PATH_TO_PROJECT"]
+PATH_TO_LAYER = os.environ["PATH_TO_LAYER"]
+SITE_URL = os.environ["SITE_URL"]
+
+
