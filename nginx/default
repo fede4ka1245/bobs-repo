@@ -1,8 +1,7 @@
 server {
   listen 81;
 
-  location /embeds/streamlitqa {
-    rewrite ^/embeds/streamlitqa(.*)$ /$1 break;
+  location /streamlitqa {
     proxy_pass http://streamlitqa:8501;
     proxy_set_header Host              $host;
     proxy_set_header X-Real-IP         $remote_addr;
