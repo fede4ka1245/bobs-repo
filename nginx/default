@@ -15,7 +15,7 @@ server {
     proxy_set_header X-Real-IP $remote_addr;
   }
 
-  location /streamlitqa {
+  location /embeds/streamlitqa {
       proxy_pass http://streamlitqa:8501;
       proxy_set_header Accept-Encoding "";
       proxy_set_header Host $host;
