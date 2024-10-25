@@ -12,4 +12,5 @@ RUN mkdir ~/.streamlit
 RUN cp config.toml ~/.streamlit/config.toml
 RUN cp credentials.toml ~/.streamlit/credentials.toml
 
-ENTRYPOINT ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT [ "streamlit", "run" ]
+CMD ["main.py"]
