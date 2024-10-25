@@ -18,7 +18,7 @@ magicEnabled = true
 
 
 [server]
-baseUrlPath = "streamlitqa"
+baseUrlPath = "/streamlitqa"
 # List of folders that should not be watched for changes. Relative paths will be taken as relative to the current working directory.
 # Example: ['/home/user1/env', 'relative/path/to/folder']
 # Default: []
