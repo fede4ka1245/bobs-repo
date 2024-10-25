@@ -83,6 +83,6 @@ services:
       context: .
       dockerfile: ./nginx/Dockerfile
     ports:
-      - '80:80'
+      - '81:81'
     restart: always
 
