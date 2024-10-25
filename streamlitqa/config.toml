@@ -41,7 +41,8 @@ port = 8501
 
 # Enables support for Cross-Origin Request Sharing, for added security.
 # Default: true
-enableCORS = false
+enableCORS = true
+enableXsrfProtection = false
 
 [browser]
 # Internet address of the server that the browser should connect to. Can be IP address or DNS name.
