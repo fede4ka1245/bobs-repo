@@ -87,6 +87,7 @@ services:
     restart: always
 
   streamlitqa:
+    hostname: streamlitqa
     build:
       context: .
       dockerfile: ./streamlitqa/Dockerfile
