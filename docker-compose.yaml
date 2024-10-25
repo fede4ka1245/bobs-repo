@@ -86,7 +86,7 @@ services:
       - '81:81'
     restart: always
 
-  streamlitQA:
+  streamlitqa:
     build:
       context: .
       dockerfile: ./streamlitQA/Dockerfile
