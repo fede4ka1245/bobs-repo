@@ -51,7 +51,6 @@ services:
   nginx:
     depends_on:
       - back
-      - minio
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
