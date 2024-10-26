@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 
-COPY ./streamlitqa /app
+COPY ./streamlit /app
 
 WORKDIR /app
 
