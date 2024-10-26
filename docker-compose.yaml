@@ -74,12 +74,12 @@ services:
       - '81:81'
     restart: always
 
-  streamlit:
-    hostname: streamlit
+  gradio:
+    hostname: gradio
     build:
       context: .
-      dockerfile: ./streamlit/Dockerfile
+      dockerfile: ./gradio/Dockerfile
     ports:
-      - '8501:8501'
+      - '7860:7860'
     restart: always
 
