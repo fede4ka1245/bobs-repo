@@ -7,3 +7,4 @@ node_modules
 rabbitmq
 mongo-init.js
 __pycache__
+server/__pycache__

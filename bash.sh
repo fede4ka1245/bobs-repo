@@ -2,6 +2,7 @@
 
 cp .env.example .env
 
-git stash
 git pull origin main
+docker compose up -d --build
+cd ./milvus
 docker compose up -d --build
