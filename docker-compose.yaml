@@ -45,6 +45,19 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      -  ./server/src:/app/src
+
+  nginx:
+    depends_on:
+      - back
+      - minio
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - '81:81'
+    restart: always
 
   qdrant:
     image: qdrant/qdrant
@@ -57,16 +70,6 @@ services:
     volumes:
       - ./qdrant_storage:/qdrant/storage:z
     restart: unless-stopped
-
-  nginx:
-    depends_on:
-      - back
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
-    ports:
-      - '81:81'
-    restart: always
 
   gradio:
     hostname: gradio
