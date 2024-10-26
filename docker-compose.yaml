@@ -52,6 +52,8 @@ services:
     ports:
       - "6333:6333"
       - "6334:6334"
+    environment:
+      - QDRANT__SERVICE__HOST=0.0.0.0
     volumes:
       - ./qdrant_storage:/qdrant/storage:z
     restart: unless-stopped
