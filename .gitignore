@@ -8,3 +8,4 @@ rabbitmq
 mongo-init.js
 __pycache__
 server/__pycache__
+server/src/shared/__pycache__
