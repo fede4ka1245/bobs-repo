@@ -45,8 +45,6 @@ services:
     restart: always
     env_file:
       - .env
-    volumes:
-      -  ./server/src:/app/src
 
   qdrant:
     image: qdrant/qdrant
