@@ -1,33 +1,6 @@
 server {
   listen 81;
 
-  location /streamlitqa/_stcore/stream {
-      proxy_pass http://127.0.0.1:8501;
-      proxy_http_version 1.1;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header Host $host;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-      proxy_read_timeout 86400;
-  }
-
-  location /streamlitqa {
-    proxy_pass http://streamlitqa:8501;
-    proxy_set_header Host              $host;
-    proxy_set_header X-Real-IP         $remote_addr;
-    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    # streamlit specific BEGIN
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
-    # streamlit specific END
-    # streamlit optional END
-    proxy_buffering    off;
-    proxy_read_timeout 86400;
-    # streamlit optional END
-  }
-
   location /back/ {
     proxy_pass http://streamlitqa:8501;
     proxy_set_header Accept-Encoding "";
@@ -43,6 +16,19 @@ server {
   }
 
   location / {
-    proxy_pass http://frontend:3000;
+    proxy_pass http://streamlit:8501;
+    proxy_set_header Host              $host;
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    # streamlit specific BEGIN
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    # streamlit specific END
+    # streamlit optional END
+    proxy_buffering    off;
+    proxy_read_timeout 86400;
+    # streamlit optional END
   }
 }
