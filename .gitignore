@@ -9,3 +9,4 @@ mongo-init.js
 __pycache__
 server/__pycache__
 server/src/shared/__pycache__
+**/__pycache__/
