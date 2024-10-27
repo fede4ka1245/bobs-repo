@@ -108,8 +108,8 @@ async def main():
     password = RABBITMQ_DEFAULT_PASS
     host = RABBIT_MQ_HOST
     port = RABBIT_MQ_PORT
-    question_queue = 'ml_questions3'
-    answer_queue = 'ml_answers3'
+    question_queue = 'ml_questions'
+    answer_queue = 'ml_questions'
 
     try:
         await worker(user, password, host, port, question_queue, answer_queue)
