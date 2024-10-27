@@ -1,0 +1,3 @@
+gradio
+aio_pika
+uuid
