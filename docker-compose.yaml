@@ -20,37 +20,7 @@ services:
       - 15672:15672
       - 5672:5672
 
-  mongodb:
-    image: mongo:latest
-    hostname: mongodb
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-    ports:
-        - 27017:27017
-    volumes:
-        - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-        - ./mongo:/data/db
-
-  back:
-    hostname: back
-    depends_on:
-      - rabbitmq
-      - mongodb
-    build: ./server
-    ports:
-      - 8000:8000
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      -  ./server/src:/app/src
-
   nginx:
-    depends_on:
-      - back
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
