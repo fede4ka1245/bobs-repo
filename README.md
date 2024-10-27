@@ -8,7 +8,7 @@
 docker compose up -d
 ```
 3) Осталось запустить ./ml-worker. Для работы на gpu его предлагается запускать отдельно.
-Например, в jupiternotebook (см ./ml-worker/jupiter-notebook)
+Например, в jupiternotebook (см ./full_launch.ipynb)
 4) Опционально*. если вы хотите запустить worker вместе с остальными сервисами, надо в файле docker-compose.yaml 
 раскомментировать блок ml-worker
 
