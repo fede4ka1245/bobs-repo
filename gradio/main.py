@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-RABBIT_MQ_HOST = '213.171.5.51'
+RABBIT_MQ_HOST = 'rabbitmq'
 RABBIT_MQ_PORT = '5672'
 RABBITMQ_DEFAULT_USER = 'rmuser'
 RABBITMQ_DEFAULT_PASS = 'rmpass'
