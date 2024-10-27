@@ -23,4 +23,8 @@ docker compose up -d
 
 ## Pipline работы модели
 
-Расположен в full_launch.ipynb
+Расположен в full_launch.ipyn
+
+
+# ТРебуется дозагрузка модели
+
