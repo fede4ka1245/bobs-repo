@@ -78,8 +78,8 @@ async def listen_for_answer(msg_id, text, callback):
     password = RABBITMQ_DEFAULT_PASS
     host = RABBIT_MQ_HOST
     port = RABBIT_MQ_PORT
-    question_queue = 'ml_questions11'
-    answer_queue = 'ml_answers11'
+    question_queue = 'ml_questions'
+    answer_queue = 'ml_answers'
 
     question_client = RabbitMQClient(user, password, host, port, question_queue)
     answer_client = RabbitMQClient(user, password, host, port, answer_queue)
