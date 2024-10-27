@@ -39,10 +39,6 @@ services:
     volumes:
       - ./qdrant_storage:/qdrant/storage:z
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          cpus: '5'  # Allows the container to use up to 50% of a single CPU core
 
   gradio:
     hostname: gradio
@@ -52,3 +48,7 @@ services:
     ports:
       - '7860:7860'
     restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '5'  # Allows the container to use up to 50% of a single CPU core
