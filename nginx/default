@@ -1,13 +1,6 @@
 server {
   listen 81;
 
-  location /back/ {
-    proxy_pass http://back:8000;
-    proxy_set_header Accept-Encoding "";
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-  }
-
   location / {
     proxy_pass http://gradio:7860/;
     proxy_buffering off;
