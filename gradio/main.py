@@ -14,6 +14,8 @@ RABBIT_MQ_PORT = '5672'
 RABBITMQ_DEFAULT_USER = 'rmuser'
 RABBITMQ_DEFAULT_PASS = 'rmpass'
 
+queue = asyncio.Queue()
+
 class RabbitMQClient:
     def __init__(self, user, password, host, port, queue_name):
         self._url = f"amqp://{user}:{password}@{host}:{port}/%2F"
@@ -142,22 +144,44 @@ async def bot(history: list):
         if message['is_end']:
             break
 
+
+def save_text(input_text):
+    global queue
+    queue.put(input_text)
+    print(input_text)
+
 with gr.Blocks() as demo:
-    chatbot = gr.Chatbot(elem_id="chatbot", bubble_full_width=False, type="messages")
+    # Creating a tab interface
+    with gr.Tabs():
+        # First tab: Main Chat interface
+        with gr.Tab("Чат бот"):
+            chatbot = gr.Chatbot(elem_id="chatbot", bubble_full_width=False, type="messages")
 
-    chat_input = gr.MultimodalTextbox(
-        interactive=True,
-        file_count="multiple",
-        placeholder="Enter message or upload file...",
-        show_label=False,
-    )
+            chat_input = gr.MultimodalTextbox(
+                interactive=True,
+                file_count="multiple",
+                placeholder="Enter message or upload file...",
+                show_label=False,
+            )
 
-    chat_msg = chat_input.submit(
-        add_message, [chatbot, chat_input], [chatbot, chat_input]
-    )
+            chat_msg = chat_input.submit(
+                add_message, [chatbot, chat_input], [chatbot, chat_input]
+            )
 
-    bot_msg = chat_msg.then(bot, chatbot, chatbot, api_name="bot_response")
-    bot_msg.then(lambda: gr.MultimodalTextbox(interactive=True), None, [chat_input])
+            bot_msg = chat_msg.then(bot, chatbot, chatbot, api_name="bot_response")
+            bot_msg.then(lambda: gr.MultimodalTextbox(interactive=True), None, [chat_input])
 
-demo.queue(default_concurrency_limit=10)
-demo.launch(share=True)
+        # Second tab: Text form with Save button
+        with gr.Tab("Записать данные"):
+            text_input = gr.Textbox(
+                lines=5,
+                placeholder="Ввести текси...",
+                label="Форма ввода"
+            )
+            save_button = gr.Button("Сохранить")
+
+            # Connect the save button with the save_text function
+            save_button.click(save_text, inputs=text_input)
+
+    demo.queue(default_concurrency_limit=5)
+    demo.launch(share=True)
