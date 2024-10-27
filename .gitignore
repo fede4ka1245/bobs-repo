@@ -1,0 +1,12 @@
+.env
+venv
+.idea
+/data
+node_modules
+/telegrambot/node_modules/
+rabbitmq
+mongo-init.js
+__pycache__
+server/__pycache__
+server/src/shared/__pycache__
+**/__pycache__/
