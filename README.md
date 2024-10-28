@@ -28,4 +28,4 @@ docker compose up -d
 
 # ТРебуется дозагрузка модели
 
-ttps://s3.timeweb.cloud/27d6b1d6-241f2159-8e91-4925-be63-7cc5c17ad8ac/DlYhGCdmbnpzaucWgPqkBZKXMiNQIUSAOLVowrtF.zip
+https://s3.timeweb.cloud/27d6b1d6-241f2159-8e91-4925-be63-7cc5c17ad8ac/DlYhGCdmbnpzaucWgPqkBZKXMiNQIUSAOLVowrtF.zip
